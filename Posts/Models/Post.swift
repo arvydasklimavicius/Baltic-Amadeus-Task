@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Post {
-    let userId: User
+struct Post: Codable {
+    let userId: Int
     let title: String
 }
