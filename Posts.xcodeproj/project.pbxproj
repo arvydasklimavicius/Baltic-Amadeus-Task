@@ -19,6 +19,7 @@
 		CE5F393F2799F91200A8AD08 /* PostsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F393E2799F91200A8AD08 /* PostsUITestsLaunchTests.swift */; };
 		CE5F394D2799FC6200A8AD08 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F394C2799FC6200A8AD08 /* Post.swift */; };
 		CE5F394F2799FC6D00A8AD08 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F394E2799FC6D00A8AD08 /* User.swift */; };
+		CEB95AF8279C6762002B4D94 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95AF7279C6762002B4D94 /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		CE5F393E2799F91200A8AD08 /* PostsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CE5F394C2799FC6200A8AD08 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		CE5F394E2799FC6D00A8AD08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CEB95AF7279C6762002B4D94 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		CE5F39172799F90E00A8AD08 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				CEB95AF6279C6753002B4D94 /* Networking */,
 				CE5F394B2799FC1800A8AD08 /* Models */,
 				CE5F39182799F90E00A8AD08 /* AppDelegate.swift */,
 				CE5F391A2799F90E00A8AD08 /* SceneDelegate.swift */,
@@ -142,6 +145,14 @@
 				CE5F394E2799FC6D00A8AD08 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CEB95AF6279C6753002B4D94 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				CEB95AF7279C6762002B4D94 /* APIManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +292,7 @@
 				CE5F391B2799F90E00A8AD08 /* SceneDelegate.swift in Sources */,
 				CE5F39232799F90E00A8AD08 /* Posts.xcdatamodeld in Sources */,
 				CE5F394D2799FC6200A8AD08 /* Post.swift in Sources */,
+				CEB95AF8279C6762002B4D94 /* APIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

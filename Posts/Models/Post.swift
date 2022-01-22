@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Post {
+    let userId: User
+    let title: String
+}
