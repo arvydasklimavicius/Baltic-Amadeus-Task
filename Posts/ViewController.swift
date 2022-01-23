@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     private let apiManager = APIManager()
     private var fetchedUsers = [User]()
     private var fetchedPosts = [Post]()
-    private var data = [Any]()
+    private var userPost = [UserPost]()
     
 
 
@@ -22,8 +22,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         loadUsers()
         loadPosts()
-        
-       
     }
 
     private func loadUsers() {
@@ -54,22 +52,22 @@ class ViewController: UIViewController {
         }
     }
     
-    func mergeArrays() {
-        data = fetchedUsers + fetchedPosts
-//        print(fetchedUsers[0].name)
-//        print(fetchedPosts[0].title)
-        
-        for name in fetchedUsers {
-            print(name)
+
+    
+    func createPost() {
+        for i in fetchedUsers {
+            for x in fetchedPosts {
+                if i.id == x.userId {
+                    userPost.append(UserPost(userId: i.id, userName: i.name, postTitle: x.title))
+                }
+            }
         }
-        
     }
     
     @IBAction func btnTapped(_ sender: Any) {
-        
-        mergeArrays()
-//        print(data.enumerated())
-        
+
+        createPost()
+        print("name: \(userPost[0].userName),\npost: \(userPost[0].postTitle)")
         
     }
     
