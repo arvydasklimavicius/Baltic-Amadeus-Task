@@ -10,20 +10,22 @@ import Foundation
 struct APIManager {
     
     private let decoder = JSONDecoder()
+    private let usersEndpoint = "https://jsonplaceholder.typicode.com/users"
+    private let postsEndpoint = "https://jsonplaceholder.typicode.com/posts"
     
-//MARK: - Fetch Users
+    //MARK: - Fetch Users
     
-    func getUsers(_ completion: @escaping (Result<[User], Error>) -> ()) {
-        performRequest(urlString: "https://jsonplaceholder.typicode.com/users") { result in
+    func getUsers(_ completion: @escaping (Result<[User], APIError>) -> ()) {
+        performRequest(urlString: usersEndpoint) { result in
             switch result {
             case let .success(data):
                 do {
                     let users = try decoder.decode([User].self, from: data)
                     completion(.success(users))
-//                    print("🟣\(users)")
+                    //                    print("🟣\(users)")
                 }
                 catch {
-                    completion(.failure(error.localizedDescription as! Error))
+                    completion(.failure(.failedResponse))
                 }
             case let .failure(error):
                 completion(.failure(error))
@@ -31,17 +33,19 @@ struct APIManager {
         }
     }
     
-    func getPosts(_ completion: @escaping(Result<[Post], Error>) -> ()) {
-        performRequest(urlString: "https://jsonplaceholder.typicode.com/posts") { result in
+    //MARK: - Fetch Posts
+    
+    func getPosts(_ completion: @escaping(Result<[Post], APIError>) -> ()) {
+        performRequest(urlString: postsEndpoint ) { result in
             switch result {
             case let .success(data):
                 do {
                     let posts = try decoder.decode([Post].self, from: data)
                     completion(.success(posts))
-//                    print("🟢🟢🟢\(posts)")
+                    //                    print("🟢🟢🟢\(posts)")
                 }
                 catch {
-                    completion(.failure(error.localizedDescription as! Error))
+                    completion(.failure(.failedResponse))
                 }
             case let .failure(error):
                 completion(.failure(error))
@@ -49,7 +53,7 @@ struct APIManager {
         }
     }
     
-    private func performRequest(urlString: String, completion: @escaping (Result<Data, Error>) -> ()) {
+    private func performRequest(urlString: String, completion: @escaping (Result<Data, APIError>) -> ()) {
         guard let url = URL(string: urlString) else { return }
         let session = URLSession.shared
         
@@ -57,7 +61,7 @@ struct APIManager {
             if let data = data {
                 completion(.success(data))
             } else {
-                completion(.failure(error?.localizedDescription as! Error))
+                completion(.failure(.failedRequest))
             }
         }
         task.resume()

@@ -12,6 +12,9 @@ class ViewController: UIViewController {
     private let apiManager = APIManager()
     private var fetchedUsers = [User]()
     private var fetchedPosts = [Post]()
+    private var data = [Any]()
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +25,14 @@ class ViewController: UIViewController {
         
        
     }
-    
+
     private func loadUsers() {
         apiManager.getUsers { [ weak self ] result in
             DispatchQueue.main.async { [ self ] in
                 switch result {
                 case .success(let users):
                     self?.fetchedUsers.append(contentsOf: users)
-                    print(self?.fetchedUsers)
+//                    print(self?.fetchedUsers)
                 default:
                     break
                 }
@@ -51,12 +54,25 @@ class ViewController: UIViewController {
         }
     }
     
-    func createPost(userId: User, post: Post) -> String {
-        let postUser = post.userId
-        let postTitle = userId.name
-        return "\(postUser) \(postTitle)"
+    func mergeArrays() {
+        data = fetchedUsers + fetchedPosts
+//        print(fetchedUsers[0].name)
+//        print(fetchedPosts[0].title)
+        
+        for name in fetchedUsers {
+            print(name)
+        }
+        
     }
-
+    
+    @IBAction func btnTapped(_ sender: Any) {
+        
+        mergeArrays()
+//        print(data.enumerated())
+        
+        
+    }
+    
 
 }
 
