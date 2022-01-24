@@ -10,18 +10,21 @@ import UIKit
 class ViewController: UIViewController {
     
     private let apiManager = APIManager()
+    private let dispatchGroup = DispatchGroup()
+    
     private var fetchedUsers = [User]()
     private var fetchedPosts = [Post]()
     private var userPost = [UserPost]()
-    private let dispatchGroup = DispatchGroup()
     
-
-
+    @IBOutlet weak var postsTableView: UITableView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        postsTableView.dataSource = self
         start()
-
+        
         
         
     }
@@ -57,7 +60,7 @@ class ViewController: UIViewController {
         }
     }
     
-
+    
     
     func createPost() {
         for i in fetchedUsers {
@@ -75,6 +78,7 @@ class ViewController: UIViewController {
         loadPosts()
         dispatchGroup.notify(queue: .main) {
             self.createPost()
+            self.postsTableView.reloadData()
         }
     }
     
@@ -84,11 +88,26 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func btnTapped(_ sender: Any) {
+}
 
-        
+extension ViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        userPost.count
     }
     
-
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserPostCell", for: indexPath)
+        
+        guard
+            indexPath.row < userPost.count,
+            let userPostCell = cell as? UserPostTableViewCell
+        else {
+            return cell
+        }
+        return userPostCell
+    }
+    
+    
 }
 
