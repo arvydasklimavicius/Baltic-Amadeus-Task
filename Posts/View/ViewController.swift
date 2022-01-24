@@ -105,6 +105,7 @@ extension ViewController: UITableViewDataSource {
         else {
             return cell
         }
+        userPostCell.configureCell(name: userPost[indexPath.row].userName, post: userPost[indexPath.row].postTitle)
         return userPostCell
     }
     
