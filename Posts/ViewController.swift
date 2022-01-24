@@ -13,24 +13,27 @@ class ViewController: UIViewController {
     private var fetchedUsers = [User]()
     private var fetchedPosts = [Post]()
     private var userPost = [UserPost]()
+    private let dispatchGroup = DispatchGroup()
     
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
-        // Do any additional setup after loading the view.
-        loadUsers()
-        loadPosts()
-    }
+        start()
 
+        
+        
+    }
+    
     private func loadUsers() {
+        dispatchGroup.enter()
         apiManager.getUsers { [ weak self ] result in
             DispatchQueue.main.async { [ self ] in
                 switch result {
                 case .success(let users):
                     self?.fetchedUsers.append(contentsOf: users)
-//                    print(self?.fetchedUsers)
+                    self?.dispatchGroup.leave()
                 default:
                     break
                 }
@@ -39,12 +42,14 @@ class ViewController: UIViewController {
     }
     
     private func loadPosts() {
+        dispatchGroup.enter()
         apiManager.getPosts { [weak self] result in
             DispatchQueue.main.async {
                 [ self ] in
                 switch result {
                 case .success(let posts):
                     self?.fetchedPosts.append(contentsOf: posts)
+                    self?.dispatchGroup.leave()
                 default:
                     break
                 }
@@ -62,12 +67,25 @@ class ViewController: UIViewController {
                 }
             }
         }
+        printPost()
+    }
+    
+    func start() {
+        loadUsers()
+        loadPosts()
+        dispatchGroup.notify(queue: .main) {
+            self.createPost()
+        }
+    }
+    
+    func printPost() {
+        for i in userPost {
+            print("\(i.userName) - \(i.postTitle)")
+        }
     }
     
     @IBAction func btnTapped(_ sender: Any) {
 
-        createPost()
-        print("name: \(userPost[0].userName),\npost: \(userPost[0].postTitle)")
         
     }
     
