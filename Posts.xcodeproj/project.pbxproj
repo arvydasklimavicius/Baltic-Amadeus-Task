@@ -17,8 +17,8 @@
 		CE5F39332799F91200A8AD08 /* PostsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F39322799F91200A8AD08 /* PostsTests.swift */; };
 		CE5F393D2799F91200A8AD08 /* PostsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F393C2799F91200A8AD08 /* PostsUITests.swift */; };
 		CE5F393F2799F91200A8AD08 /* PostsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F393E2799F91200A8AD08 /* PostsUITestsLaunchTests.swift */; };
-		CE5F394D2799FC6200A8AD08 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F394C2799FC6200A8AD08 /* Post.swift */; };
-		CE5F394F2799FC6D00A8AD08 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F394E2799FC6D00A8AD08 /* User.swift */; };
+		CE5F394D2799FC6200A8AD08 /* PostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F394C2799FC6200A8AD08 /* PostResponse.swift */; };
+		CE5F394F2799FC6D00A8AD08 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F394E2799FC6D00A8AD08 /* UserResponse.swift */; };
 		CEB95AF8279C6762002B4D94 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95AF7279C6762002B4D94 /* APIManager.swift */; };
 		CEB95AFE279D6840002B4D94 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95AFD279D6840002B4D94 /* APIError.swift */; };
 		CEB95B00279DCAE7002B4D94 /* UserPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95AFF279DCAE7002B4D94 /* UserPost.swift */; };
@@ -57,8 +57,8 @@
 		CE5F39382799F91200A8AD08 /* PostsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PostsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5F393C2799F91200A8AD08 /* PostsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsUITests.swift; sourceTree = "<group>"; };
 		CE5F393E2799F91200A8AD08 /* PostsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		CE5F394C2799FC6200A8AD08 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		CE5F394E2799FC6D00A8AD08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CE5F394C2799FC6200A8AD08 /* PostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostResponse.swift; sourceTree = "<group>"; };
+		CE5F394E2799FC6D00A8AD08 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		CEB95AF7279C6762002B4D94 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		CEB95AFD279D6840002B4D94 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		CEB95AFF279DCAE7002B4D94 /* UserPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPost.swift; sourceTree = "<group>"; };
@@ -147,8 +147,8 @@
 		CE5F394B2799FC1800A8AD08 /* ResponseModels */ = {
 			isa = PBXGroup;
 			children = (
-				CE5F394C2799FC6200A8AD08 /* Post.swift */,
-				CE5F394E2799FC6D00A8AD08 /* User.swift */,
+				CE5F394C2799FC6200A8AD08 /* PostResponse.swift */,
+				CE5F394E2799FC6D00A8AD08 /* UserResponse.swift */,
 				CEB95AFF279DCAE7002B4D94 /* UserPost.swift */,
 			);
 			path = ResponseModels;
@@ -305,13 +305,13 @@
 			files = (
 				CE5F391D2799F90E00A8AD08 /* ViewController.swift in Sources */,
 				CE5F39192799F90E00A8AD08 /* AppDelegate.swift in Sources */,
-				CE5F394F2799FC6D00A8AD08 /* User.swift in Sources */,
+				CE5F394F2799FC6D00A8AD08 /* UserResponse.swift in Sources */,
 				CE5F391B2799F90E00A8AD08 /* SceneDelegate.swift in Sources */,
 				CEB95B02279F3D9D002B4D94 /* UserPostTableViewCell.swift in Sources */,
 				CE5F39232799F90E00A8AD08 /* Posts.xcdatamodeld in Sources */,
 				CEB95B00279DCAE7002B4D94 /* UserPost.swift in Sources */,
 				CEB95AFE279D6840002B4D94 /* APIError.swift in Sources */,
-				CE5F394D2799FC6200A8AD08 /* Post.swift in Sources */,
+				CE5F394D2799FC6200A8AD08 /* PostResponse.swift in Sources */,
 				CEB95AF8279C6762002B4D94 /* APIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

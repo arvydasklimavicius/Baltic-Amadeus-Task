@@ -15,14 +15,13 @@ struct APIManager {
     
     //MARK: - Fetch Users
     
-    func getUsers(_ completion: @escaping (Result<[User], APIError>) -> ()) {
+    func getUsers(_ completion: @escaping (Result<[UserResponse], APIError>) -> ()) {
         performRequest(urlString: usersEndpoint) { result in
             switch result {
             case let .success(data):
                 do {
-                    let users = try decoder.decode([User].self, from: data)
+                    let users = try decoder.decode([UserResponse].self, from: data)
                     completion(.success(users))
-                    //                    print("🟣\(users)")
                 }
                 catch {
                     completion(.failure(.failedResponse))
@@ -35,14 +34,13 @@ struct APIManager {
     
     //MARK: - Fetch Posts
     
-    func getPosts(_ completion: @escaping(Result<[Post], APIError>) -> ()) {
+    func getPosts(_ completion: @escaping(Result<[PostResponse], APIError>) -> ()) {
         performRequest(urlString: postsEndpoint ) { result in
             switch result {
             case let .success(data):
                 do {
-                    let posts = try decoder.decode([Post].self, from: data)
+                    let posts = try decoder.decode([PostResponse].self, from: data)
                     completion(.success(posts))
-                    //                    print("🟢🟢🟢\(posts)")
                 }
                 catch {
                     completion(.failure(.failedResponse))
@@ -52,6 +50,8 @@ struct APIManager {
             }
         }
     }
+    
+    //MARK: - Create request
     
     private func performRequest(urlString: String, completion: @escaping (Result<Data, APIError>) -> ()) {
         guard let url = URL(string: urlString) else { return }

@@ -11,6 +11,5 @@ enum APIError: Error {
     case failedRequest
     case unexpectedDataFormat
     case failedResponse
-    case failedURLCreation
 }
 

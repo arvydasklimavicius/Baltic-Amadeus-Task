@@ -12,22 +12,19 @@ class ViewController: UIViewController {
     private let apiManager = APIManager()
     private let dispatchGroup = DispatchGroup()
     
-    private var fetchedUsers = [User]()
-    private var fetchedPosts = [Post]()
+    private var fetchedUsers = [UserResponse]()
+    private var fetchedPosts = [PostResponse]()
     private var userPost = [UserPost]()
     
     @IBOutlet weak var postsTableView: UITableView!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         postsTableView.dataSource = self
         start()
-        
-        
-        
     }
+    
+    //MARK: - Network call
     
     private func loadUsers() {
         dispatchGroup.enter()
@@ -60,8 +57,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
-    
     func createPost() {
         for i in fetchedUsers {
             for x in fetchedPosts {
@@ -70,8 +65,9 @@ class ViewController: UIViewController {
                 }
             }
         }
-        printPost()
     }
+    
+    //MARK: - Load data to TableView
     
     func start() {
         loadUsers()
@@ -81,14 +77,9 @@ class ViewController: UIViewController {
             self.postsTableView.reloadData()
         }
     }
-    
-    func printPost() {
-        for i in userPost {
-            print("\(i.userName) - \(i.postTitle)")
-        }
-    }
-    
 }
+
+//MARK: - TableView data source
 
 extension ViewController: UITableViewDataSource {
     
