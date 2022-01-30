@@ -66,6 +66,4 @@ struct APIManager {
         }
         task.resume()
     }
-    
-    
 }

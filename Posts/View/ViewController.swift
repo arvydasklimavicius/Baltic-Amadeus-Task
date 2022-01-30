@@ -9,8 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    static let shared = ViewController()
+    
     private let apiManager = APIManager()
     private let dispatchGroup = DispatchGroup()
+//    private let coredataService = CoreDataService()
+    
+    var coreDataUsers = [User]()
     
     private var fetchedUsers = [UserResponse]()
     private var fetchedPosts = [PostResponse]()
@@ -20,8 +25,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getJSON()
+        PersistenceService.shared.fetch(User.self) { [ weak self ] users in
+            self?.coreDataUsers = users
+        }
+        
+        print("🟡🟡🟡 \(coreDataUsers)")
+
         postsTableView.dataSource = self
-        start()
+//        start()
     }
     
     //MARK: - Network call
@@ -76,6 +88,22 @@ class ViewController: UIViewController {
             self.createPost()
             self.postsTableView.reloadData()
         }
+    }
+    
+    func getJSON() {
+        guard let url = URL(string:"https://jsonplaceholder.typicode.com/users" ) else { return }
+        CoreDataService.shared.fetchJSON(url: url) { result in
+            switch result {
+            case .success(let users):
+                users.forEach { user in
+                    print(user)
+                    print(self.coreDataUsers)
+                }
+            case .failure(let err):
+                print(err)
+            }
+        }
+        
     }
 }
 
