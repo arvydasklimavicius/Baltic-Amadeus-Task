@@ -18,11 +18,13 @@ class HomeViewController: UIViewController {
     private var userPost = [UserPost]()
     
     @IBOutlet weak var postsTableView: UITableView!
+    @IBOutlet weak var logoView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         postsTableView.dataSource = self
+        logoView.layer.cornerRadius = 15
         start()
     }
     

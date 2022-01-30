@@ -15,7 +15,7 @@ class UserPostTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
         cellViewContainer.layer.cornerRadius = 8
     }
     
