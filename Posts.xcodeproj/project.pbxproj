@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE5F39192799F90E00A8AD08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F39182799F90E00A8AD08 /* AppDelegate.swift */; };
 		CE5F391B2799F90E00A8AD08 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F391A2799F90E00A8AD08 /* SceneDelegate.swift */; };
-		CE5F391D2799F90E00A8AD08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F391C2799F90E00A8AD08 /* ViewController.swift */; };
+		CE5F391D2799F90E00A8AD08 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F391C2799F90E00A8AD08 /* HomeViewController.swift */; };
 		CE5F39202799F90E00A8AD08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5F391E2799F90E00A8AD08 /* Main.storyboard */; };
 		CE5F39232799F90E00A8AD08 /* Posts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE5F39212799F90E00A8AD08 /* Posts.xcdatamodeld */; };
 		CE5F39252799F91100A8AD08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5F39242799F91100A8AD08 /* Assets.xcassets */; };
@@ -30,9 +30,10 @@
 		CEB95B1227A5B08E002B4D94 /* DBUserPost+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95B0C27A5B08E002B4D94 /* DBUserPost+CoreDataProperties.swift */; };
 		CEB95B1327A5B08E002B4D94 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95B0D27A5B08E002B4D94 /* Post+CoreDataClass.swift */; };
 		CEB95B1427A5B08E002B4D94 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95B0E27A5B08E002B4D94 /* Post+CoreDataProperties.swift */; };
-		CEB95B1627A5B522002B4D94 /* DBUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95B1527A5B522002B4D94 /* DBUserManager.swift */; };
 		CEB95B1827A5CB78002B4D94 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95B1727A5CB78002B4D94 /* CoreDataService.swift */; };
 		CEB95B1A27A6C698002B4D94 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95B1927A6C698002B4D94 /* PersistenceService.swift */; };
+		CEB95B1C27A7096A002B4D94 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95B1B27A7096A002B4D94 /* CoreDataStack.swift */; };
+		CEB95B1E27A70A39002B4D94 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95B1D27A70A39002B4D94 /* APIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +57,7 @@
 		CE5F39152799F90E00A8AD08 /* Posts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Posts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5F39182799F90E00A8AD08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE5F391A2799F90E00A8AD08 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE5F391C2799F90E00A8AD08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CE5F391C2799F90E00A8AD08 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CE5F391F2799F90E00A8AD08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE5F39222799F90E00A8AD08 /* Posts.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Posts.xcdatamodel; sourceTree = "<group>"; };
 		CE5F39242799F91100A8AD08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,9 +81,10 @@
 		CEB95B0C27A5B08E002B4D94 /* DBUserPost+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBUserPost+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CEB95B0D27A5B08E002B4D94 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CEB95B0E27A5B08E002B4D94 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		CEB95B1527A5B522002B4D94 /* DBUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUserManager.swift; sourceTree = "<group>"; };
 		CEB95B1727A5CB78002B4D94 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		CEB95B1927A6C698002B4D94 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		CEB95B1B27A7096A002B4D94 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		CEB95B1D27A70A39002B4D94 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,9 +145,10 @@
 				CE5F39242799F91100A8AD08 /* Assets.xcassets */,
 				CE5F39262799F91100A8AD08 /* LaunchScreen.storyboard */,
 				CE5F39292799F91100A8AD08 /* Info.plist */,
-				CEB95B1527A5B522002B4D94 /* DBUserManager.swift */,
 				CEB95B1727A5CB78002B4D94 /* CoreDataService.swift */,
 				CEB95B1927A6C698002B4D94 /* PersistenceService.swift */,
+				CEB95B1B27A7096A002B4D94 /* CoreDataStack.swift */,
+				CEB95B1D27A70A39002B4D94 /* APIService.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -189,7 +192,7 @@
 		CEB95B03279F3DC5002B4D94 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CE5F391C2799F90E00A8AD08 /* ViewController.swift */,
+				CE5F391C2799F90E00A8AD08 /* HomeViewController.swift */,
 				CEB95B01279F3D9D002B4D94 /* UserPostTableViewCell.swift */,
 			);
 			path = View;
@@ -349,7 +352,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE5F391D2799F90E00A8AD08 /* ViewController.swift in Sources */,
+				CE5F391D2799F90E00A8AD08 /* HomeViewController.swift in Sources */,
+				CEB95B1E27A70A39002B4D94 /* APIService.swift in Sources */,
 				CE5F39192799F90E00A8AD08 /* AppDelegate.swift in Sources */,
 				CEB95B0F27A5B08E002B4D94 /* User+CoreDataClass.swift in Sources */,
 				CE5F394F2799FC6D00A8AD08 /* UserResponse.swift in Sources */,
@@ -358,13 +362,13 @@
 				CEB95B1427A5B08E002B4D94 /* Post+CoreDataProperties.swift in Sources */,
 				CEB95B02279F3D9D002B4D94 /* UserPostTableViewCell.swift in Sources */,
 				CEB95B1127A5B08E002B4D94 /* DBUserPost+CoreDataClass.swift in Sources */,
-				CEB95B1627A5B522002B4D94 /* DBUserManager.swift in Sources */,
 				CE5F39232799F90E00A8AD08 /* Posts.xcdatamodeld in Sources */,
 				CEB95B1227A5B08E002B4D94 /* DBUserPost+CoreDataProperties.swift in Sources */,
 				CEB95B00279DCAE7002B4D94 /* UserPost.swift in Sources */,
 				CEB95AFE279D6840002B4D94 /* APIError.swift in Sources */,
 				CEB95B1827A5CB78002B4D94 /* CoreDataService.swift in Sources */,
 				CE5F394D2799FC6200A8AD08 /* PostResponse.swift in Sources */,
+				CEB95B1C27A7096A002B4D94 /* CoreDataStack.swift in Sources */,
 				CEB95B1027A5B08E002B4D94 /* User+CoreDataProperties.swift in Sources */,
 				CEB95B1327A5B08E002B4D94 /* Post+CoreDataClass.swift in Sources */,
 				CEB95AF8279C6762002B4D94 /* APIManager.swift in Sources */,

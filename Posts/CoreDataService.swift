@@ -113,44 +113,7 @@ class CoreDataService {
 //        }
 //    }
     
-    func fetchJSON(url: URL, completion: @escaping (Result<[User], APIError>) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let jsonData = data, let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 201 || httpResponse.statusCode == 200, error == nil else {
-                
-                if let error = error as NSError?, error.domain == NSURLErrorDomain {
-                    
-                    completion(.failure(.failedResponse))
-                }
-                return
-            }
-            
-            //MARK: Get Data Back
-            do {
-                
-                let decoder = JSONDecoder.init(context: PersistenceService.shared.persistentContainer.viewContext)
-                let data = try decoder.decode([User].self, from: jsonData)
-                ViewController.shared.coreDataUsers = data
-                
-                let users = User(context: PersistenceService.shared.persistentContainer.viewContext)
-                
-                data.forEach { (user) in
-                    users.id = user.id
-                    users.name = user.name
-                
-                completion(.success(data))
-                    ViewController.shared.coreDataUsers = data
-                }
-                
-                DispatchQueue.main.async {
-//                    HomeController.shared.tableView.reloadData()
-                    PersistenceService.shared.save()
-                }
-                
-            } catch {
-                completion(.failure(.unexpectedDataFormat))
-            }
-        } .resume()
-    }
+    
     
     func applicationDocumentsDirectory() {
             if let url = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).last {
