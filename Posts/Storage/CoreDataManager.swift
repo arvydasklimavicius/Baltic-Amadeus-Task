@@ -10,6 +10,9 @@ import CoreData
 
 class CoreDataManager {
     
+    static let shared = CoreDataManager()
+    private init() {}
+    
     private static let modelName = "Posts"
     
     static var managedContext: NSManagedObjectContext = {
@@ -31,4 +34,10 @@ class CoreDataManager {
         
         try managedContext.save()
     }
+    
+    func applicationDocumentsDirectory() {
+            if let url = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).last {
+                print(url.absoluteString)
+            }
+        }
 }

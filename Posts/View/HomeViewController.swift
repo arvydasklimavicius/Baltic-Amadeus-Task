@@ -6,14 +6,12 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeViewController: UIViewController {
     
-//    private let apiManager = APIManager()
+    private let apiManager = APIManager()
     private let dispatchGroup = DispatchGroup()
-//    private let coredataService = CoreDataService()
-    
-    var coreDataUsers = [User]()
     
     private var fetchedUsers = [UserResponse]()
     private var fetchedPosts = [PostResponse]()
@@ -25,62 +23,98 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         postsTableView.dataSource = self
-//        start()
+        start()
     }
     
     //MARK: - Network call
     
-//    private func loadUsers() {
-//        dispatchGroup.enter()
-//        apiManager.getUsers { [ weak self ] result in
-//            DispatchQueue.main.async { [ self ] in
-//                switch result {
-//                case .success(let users):
-//                    self?.fetchedUsers.append(contentsOf: users)
-//                    self?.dispatchGroup.leave()
-//                default:
-//                    break
-//                }
-//            }
-//        }
-//    }
-//    
-//    private func loadPosts() {
-//        dispatchGroup.enter()
-//        apiManager.getPosts { [weak self] result in
-//            DispatchQueue.main.async {
-//                [ self ] in
-//                switch result {
-//                case .success(let posts):
-//                    self?.fetchedPosts.append(contentsOf: posts)
-//                    self?.dispatchGroup.leave()
-//                default:
-//                    break
-//                }
-//            }
-//        }
-//    }
-//    
-//    func createPost() {
-//        for i in fetchedUsers {
-//            for x in fetchedPosts {
-//                if i.id == x.userId {
-//                    userPost.append(UserPost(userId: i.id, userName: i.name, postTitle: x.title))
-//                }
-//            }
-//        }
-//    }
-//    
-//    //MARK: - Load data to TableView
-//    
-//    func start() {
-//        loadUsers()
-//        loadPosts()
-//        dispatchGroup.notify(queue: .main) {
-//            self.createPost()
-//            self.postsTableView.reloadData()
-//        }
-//    }
+    private func loadUsers() {
+        dispatchGroup.enter()
+        apiManager.getUsers { [ weak self ] result in
+            DispatchQueue.main.async { [ self ] in
+                switch result {
+                case .success(let users):
+                    self?.fetchedUsers.append(contentsOf: users)
+                    self?.dispatchGroup.leave()
+                default:
+                    break
+                }
+            }
+        }
+    }
+
+    private func loadPosts() {
+        dispatchGroup.enter()
+        apiManager.getPosts { [weak self] result in
+            DispatchQueue.main.async {
+                [ self ] in
+                switch result {
+                case .success(let posts):
+                    self?.fetchedPosts.append(contentsOf: posts)
+                    self?.dispatchGroup.leave()
+                default:
+                    break
+                }
+            }
+        }
+    }
+
+    func createPostToShow() {
+        for user in fetchedUsers {
+            for post in fetchedPosts {
+                if user.id == post.userId {
+                    userPost.append(UserPost(userId: user.id, userName: user.name, postTitle: post.title))
+                }
+            }
+        }
+    }
+
+    //MARK: - Load data to TableView
+
+    func start() {
+        loadUsers()
+        loadPosts()
+        dispatchGroup.notify(queue: .main) {
+            self.createPostToShow()
+            self.postsTableView.reloadData()
+            self.clearData()
+            self.savePostToCoreData(self.userPost)
+        }
+    }
+    
+    //MARK: - Save posts to CoreData
+    
+    func savePostToCoreData(_ posts: [UserPost]) {
+        let context = CoreDataManager.storeContainer.viewContext
+        for post in posts {
+            let newPost = NSEntityDescription.insertNewObject(forEntityName: "DBUserPost", into: context)
+            newPost.setValue(post.userId, forKey: "userId")
+            newPost.setValue(post.userName, forKey: "userName")
+            newPost.setValue(post.postTitle, forKey: "postTitle")
+        }
+        do {
+            try context.save()
+            print("🟠 Success")
+        } catch {
+            print("Error saving \(error)")
+        }
+    }
+    
+    //MARK: - Clear CoreData
+    
+    private func clearData() {
+            do {
+                let context = CoreDataManager.storeContainer.viewContext
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "DBUserPost")
+                do {
+                    let objects  = try context.fetch(fetchRequest) as? [NSManagedObject]
+                    _ = objects.map{$0.map{context.delete($0)}}
+                    try CoreDataManager.saveContext()
+                } catch let error {
+                    print("ERROR DELETING : \(error)")
+                }
+            }
+        }
 }
 
 //MARK: - TableView data source
